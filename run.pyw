@@ -58,6 +58,14 @@ class CipherGUI:
                 output_path = file_path
                 cipher_obj.output(output_path)
             tk.messagebox.showinfo("Success","no errors :) !")
+        else:
+            selected_files = self.file_listbox.get(0, tk.END)
+            for file_path in selected_files:
+                cipher_obj = Cipher(file_path, 0)
+                cipher_obj.vig(mode)
+                output_path = file_path
+                cipher_obj.output(output_path)
+            tk.messagebox.showinfo("Null key","NULL = No changes :) !")
 
 def main():
     root = tk.Tk()
