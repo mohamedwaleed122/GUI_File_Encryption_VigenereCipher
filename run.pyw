@@ -3,6 +3,7 @@ from tkinter import filedialog
 from tkinter import PhotoImage
 from cipher import Cipher
 import bg_images
+from tkinter import messagebox
 
 class CipherGUI:
     def __init__(self, master):
@@ -37,6 +38,7 @@ class CipherGUI:
 
         self.btn_decrypt = tk.Button(master, image=self.bg_decrypt_button,  text="Decrypt", command=lambda: self.process_cipher('d'),borderwidth=0)
         self.btn_decrypt.place(x=250, y=291)
+        tk.messagebox.showinfo("IMPORTANT!!","IF you are decrypting & you are not 100% sure of password \nplease make backup of files!")
 
     def browse_files(self):
         file_paths = filedialog.askopenfilenames()
@@ -59,12 +61,7 @@ class CipherGUI:
                 cipher_obj.output(output_path)
             tk.messagebox.showinfo("Success","no errors :) !")
         else:
-            selected_files = self.file_listbox.get(0, tk.END)
-            for file_path in selected_files:
-                cipher_obj = Cipher(file_path, 0)
-                cipher_obj.vig(mode)
-                output_path = file_path
-                cipher_obj.output(output_path)
+            #no need to send 0 to vigenere cipher bcoz i'm sure there is no changes will happen
             tk.messagebox.showinfo("Null key","NULL = No changes :) !")
 
 def main():
